@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paavan Nurukurthi | Data Scientist Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The resume is transformed into a single-page application with a fixed navigation bar for easy access to key sections: Skills, Journey, Education, and Certifications. This dashboard-like structure allows non-linear exploration, catering to recruiters who may want to jump directly to a specific area of interest. The core of the application is an interactive vertical timeline that combines professional experience and projects into a single "Career Journey." This narrative approach showcases growth and the practical application of skills over time. Users can click on timeline events to expand and view details, keeping the initial interface clean and scannable while offering depth on demand. This design prioritizes user engagement and efficient information discovery over the static, linear format of a traditional document. -->
+    <!-- Visualization & Content Choices: 
+        - Summary (Text): Goal: Inform. Method: A prominent text block in the header for an immediate introduction. Justification: Sets the stage clearly and professionally.
+        - Technical Skills (Categorized Lists): Goal: Organize & Inform. Method: Skills are grouped by category (ML, ML Ops, etc.) and presented as clean lists within cards. This avoids chart complexity for what is essentially a list of competencies. Justification: Highly scannable and directly mirrors the structure recruiters look for, without implying proficiency levels that aren't in the source data.
+        - Experience & Projects (Interactive Timeline): Goal: Show Change & Organize. Method: A vertical timeline built with HTML/CSS/JS. Interaction: Each entry is clickable to reveal detailed bullet points. Justification: Creates a compelling narrative of career progression and makes dense information digestible.
+        - Education & Certifications (Cards): Goal: Inform. Method: Simple, clean cards using a grid layout. Justification: Presents credentials in a clear, organized, and visually appealing manner.
+        - All presentation methods use HTML/Tailwind and vanilla JS, with no external graphics, SVG, or Mermaid JS, ensuring a lightweight and maintainable single-file application. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            left: -0.5rem;
+            top: 0.5rem;
+            background-color: #A855F7;
+            border: 2px solid #FDFBF8;
+            transform: translateX(-50%);
+        }
+        .details-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .details-content.open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold text-purple-600">Paavan Nurukurthi</h1>
+                <p class="text-sm text-gray-600">Data Scientist</p>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#skills" class="text-gray-600 hover:text-purple-600 transition">Skills</a>
+                <a href="#journey" class="text-gray-600 hover:text-purple-600 transition">Journey</a>
+                <a href="#projects" class="text-gray-600 hover:text-purple-600 transition">Projects</a>
+                <a href="#education" class="text-gray-600 hover:text-purple-600 transition">Education</a>
+                <a href="#certs" class="text-gray-600 hover:text-purple-600 transition">Certifications</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="summary" class="text-center mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Paavan Nurukurthi</h2>
+            <div class="flex justify-center items-center space-x-6 text-gray-500 mb-6">
+                <span>+1 (518) 888 1239</span>
+                <span class="text-purple-300">|</span>
+                <a href="mailto:paavannurukurthi1620@gmail.com" class="hover:text-purple-600">paavannurukurthi1620@gmail.com</a>
+                 <span class="text-purple-300">|</span>
+                <a href="https://linkedin.com/in/paavan16" target="_blank" class="hover:text-purple-600">linkedin.com/in/paavan16</a>
+            </div>
+            <p class="max-w-3xl mx-auto text-lg text-gray-700">
+                Data-driven professional with over 3 years of experience in data science, machine learning, and data engineering. Proven expertise in designing, developing, and deploying predictive models and scalable solutions to solve large-scale business challenges. Skilled in Python, SQL, and cloud platforms (AWS, Azure). Seeking to leverage extensive experience in **ML Ops, large-scale data analysis, and predictive modeling** to contribute to data-driven decision-making in the retail domain at Target.
+            </p>
+        </section>
+
+        <section id="skills" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Technical Skills</h2>
+            <div class="text-center mb-10 max-w-2xl mx-auto">
+                 <p class="text-gray-600">This section provides a categorized overview of my technical capabilities. From programming languages and machine learning frameworks to cloud platforms and ML Ops tools, these are the skills I leverage to build, deploy, and maintain effective data science solutions.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-700">Programming Languages</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                        <li>R</li>
+                        <li>SQL, PL/SQL</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-700">ML & Modeling</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Supervised & Unsupervised Learning</li>
+                        <li>Optimization & Time Series</li>
+                        <li>NLP, CNNs, LSTM</li>
+                        <li>Linear & Tree-based Models</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-700">ML Ops & Deployment</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Docker & Kubernetes</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Model Monitoring</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-700">Cloud & Data Platforms</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>AWS (S3, SageMaker)</li>
+                        <li>Microsoft Azure, GCP</li>
+                        <li>ETL Pipelines</li>
+                        <li>MySQL, PostgreSQL</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-700">Analytics & Visualization</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Tableau & Tableau Prep</li>
+                        <li>PowerBI</li>
+                        <li>Excel, Alteryx, SAS</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-700">Tools & Methodologies</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Git & JIRA</li>
+                        <li>Agile/Scrum</li>
+                        <li>RESTful APIs</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Career & Project Journey</h2>
+             <div class="text-center mb-12 max-w-2xl mx-auto">
+                 <p class="text-gray-600">This timeline illustrates my professional growth and the practical application of my skills through both industry experience and hands-on projects. Click on any entry to see the detailed contributions and outcomes. This journey demonstrates a continuous cycle of learning and application, from academic research to enterprise-level data analysis and model deployment.</p>
+            </div>
+            <div class="relative max-w-2xl mx-auto pl-8 border-l-2 border-purple-200">
+                
+                <div class="timeline-item mb-10">
+                    <div class="cursor-pointer" data-target="details-1">
+                        <p class="text-sm text-purple-600 font-semibold">Feb 2025 - Present</p>
+                        <h3 class="text-xl font-bold">Data Analyst, Excelsior Advisors</h3>
+                        <p class="text-md text-gray-500">Professional Experience</p>
+                    </div>
+                    <div id="details-1" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Led the development of a healthcare engagement platform, designing optimized ETL pipelines for real-time data.</li>
+                            <li>Applied machine learning and geospatial analysis to map interactions, providing actionable insights for application features.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item mb-10">
+                    <div class="cursor-pointer" data-target="details-2">
+                        <p class="text-sm text-purple-600 font-semibold">June 2024 - Dec 2024</p>
+                        <h3 class="text-xl font-bold">Data Analyst Intern, Office of the New York State Comptroller</h3>
+                        <p class="text-md text-gray-500">Professional Experience</p>
+                    </div>
+                    <div id="details-2" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Performed data cleaning, analysis, and visualization using Python, SQL, and Tableau to support data-driven decision-making for government stakeholders.</li>
+                            <li>Developed interactive dashboards and reports to communicate key findings and enhance data accessibility.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item mb-10">
+                    <div class="cursor-pointer" data-target="details-3">
+                        <p class="text-sm text-purple-600 font-semibold">Oct 2023 - April 2024</p>
+                        <h3 class="text-xl font-bold">Graduate Research Assistant, Rockefeller Institute of Government, University at Albany</h3>
+                        <p class="text-md text-gray-500">Professional Experience</p>
+                    </div>
+                    <div id="details-3" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Utilized data analysis and visualization to research economic and social indicators, contributing to policy recommendations.</li>
+                            <li>Developed and maintained web-based dashboards to effectively present research findings.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item mb-10">
+                    <div class="cursor-pointer" data-target="details-4">
+                        <p class="text-sm text-purple-600 font-semibold">July 2021 - July 2023</p>
+                        <h3 class="text-xl font-bold">Data Analyst, Tata Consultancy Services</h3>
+                        <p class="text-md text-gray-500">Professional Experience</p>
+                    </div>
+                    <div id="details-4" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Analyzed and interpreted complex datasets in an Agile environment to deliver data-driven insights.</li>
+                            <li>Designed, developed, and optimized ETL pipelines for over 30 datasets, enhancing data processing efficiency and accuracy.</li>
+                            <li>Supported data analytics and reporting with SQL, Python, Tableau, Power BI, and cloud-based data services (AWS/Azure).</li>
+                            <li>Implemented data validation and integrity checks, identifying and resolving over 20 discrepancies.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <section id="projects" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Key Projects</h2>
+             <div class="text-center mb-12 max-w-2xl mx-auto">
+                 <p class="text-gray-600">Below are some of the key projects I have developed. These projects demonstrate my ability to apply data science techniques to solve real-world problems, from financial forecasting and public safety analysis to large-scale data visualization. Click to expand each project for more details.</p>
+            </div>
+            <div class="relative max-w-2xl mx-auto pl-8 border-l-2 border-purple-200">
+                <div class="timeline-item mb-10">
+                    <div class="cursor-pointer" data-target="details-5">
+                        <p class="text-sm text-purple-600 font-semibold">Project Highlight</p>
+                        <h3 class="text-xl font-bold">Stock Price Prediction with Advanced Models</h3>
+                        <p class="text-md text-gray-500">Python, LSTM, Random Forest, ML Ops</p>
+                    </div>
+                    <div id="details-5" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Developed a robust predictive pipeline for stock price forecasting using historical data.</li>
+                            <li>Compared and evaluated Linear Regression, Random Forest, and LSTM models, improving prediction accuracy by 15% over baseline models.</li>
+                            <li>Packaged the model using Docker and designed a CI/CD pipeline for automated retraining and deployment, demonstrating proficiency in ML Ops.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                 <div class="timeline-item mb-10">
+                    <div class="cursor-pointer" data-target="details-6">
+                        <p class="text-sm text-purple-600 font-semibold">Project Highlight</p>
+                        <h3 class="text-xl font-bold">Vehicle Crash Data Analysis</h3>
+                        <p class="text-md text-gray-500">R, Regression, Time Series</p>
+                    </div>
+                    <div id="details-6" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                             <li>Conducted an in-depth analysis of vehicle crash data to uncover patterns influencing crash frequency.</li>
+                             <li>Built and validated regression and time series models to inform safety improvements and infrastructure decisions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                 <div class="timeline-item">
+                    <div class="cursor-pointer" data-target="details-7">
+                        <p class="text-sm text-purple-600 font-semibold">Project Highlight</p>
+                        <h3 class="text-xl font-bold">COVID-19 Analytics Dashboard</h3>
+                        <p class="text-md text-gray-500">Tableau, Python, Geospatial Analytics</p>
+                    </div>
+                    <div id="details-7" class="details-content">
+                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-600">
+                            <li>Built an interactive dashboard to analyze COVID-19 data, integrating and cleaning multiple datasets with Tableau Prep and Python.</li>
+                            <li>Utilized geospatial mapping to enrich insights, improving trend interpretability by 60% for stakeholders.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="education" class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-10">Education</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-purple-700">University at Albany, SUNY</h3>
+                    <p class="font-semibold text-gray-700">Master of Science in Data Science</p>
+                    <p class="text-sm text-gray-500">GPA: 3.87/4.0 | Aug 2023 - May 2025</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-purple-700">Koneru Lakshmaiah University</h3>
+                    <p class="font-semibold text-gray-700">Bachelors in Computer Science Engineering</p>
+                    <p class="text-sm text-gray-500">CGPA: 8.89/10.0 | June 2017 - June 2021</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="certs">
+            <h2 class="text-3xl font-bold text-center mb-10">Certifications</h2>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="font-semibold">AWS Certified Developer - Associate</p>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="font-semibold">Microsoft Certified Azure Fundamentals</p>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="font-semibold">RPA Advanced Professional Certified</p>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="font-semibold">Data Science with Python</p>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="font-semibold">Big Data and Hadoop Administrator</p>
+                </div>
+                 <div class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="font-semibold">Oracle Academy: Database Foundations</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="text-center py-6 mt-12 border-t border-gray-200">
+        <p class="text-gray-500">&copy; 2025 Paavan Nurukurthi. Interactive resume created from source data.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timelineItems = document.querySelectorAll('.timeline-item .cursor-pointer');
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const targetId = item.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.classList.toggle('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
